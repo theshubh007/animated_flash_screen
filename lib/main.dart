@@ -88,31 +88,3 @@ class _Splash_screenState extends State<Splash_screen> {
     );
   }
 }
-
-class CircleRevealClipper extends CustomClipper<Path> {
-  CircleRevealClipper({
-    required this.revealPercent,
-    required this.centerAlignment,
-  });
-
-  final double revealPercent;
-  final Alignment centerAlignment;
-
-  @override
-  Path getClip(Size size) {
-    final radius = revealPercent *
-        math.sqrt(size.width * size.width + size.height * size.height);
-
-    return Path()
-      ..addOval(Rect.fromCircle(
-        center: Offset(
-            size.width * centerAlignment.x, size.height * centerAlignment.y),
-        radius: radius,
-      ));
-  }
-
-  @override
-  bool shouldReclip(CircleRevealClipper oldClipper) =>
-      revealPercent != oldClipper.revealPercent ||
-      centerAlignment != oldClipper.centerAlignment;
-}
